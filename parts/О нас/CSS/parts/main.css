@@ -30,9 +30,11 @@
 
 .slider-slide img {
     width: 100%;
+    max-width: 100%;
     height: auto;
+    max-height: 600px;
     display: block;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 12px;
 }
 
@@ -111,6 +113,10 @@
         padding: 0 20px;
     }
 
+    .slider-slide img {
+        max-height: 500px;
+    }
+
     .slider-btn {
         width: 45px;
         height: 45px;
@@ -131,6 +137,10 @@
     .slider-container {
         margin: 30px auto;
         padding: 0 10px;
+    }
+
+    .slider-slide img {
+        max-height: 400px;
     }
 
     .slider-btn {
@@ -170,6 +180,10 @@
         padding: 0 5px;
     }
 
+    .slider-slide img {
+        max-height: 300px;
+    }
+
     .slider-btn {
         width: 35px;
         height: 35px;
@@ -201,6 +215,10 @@
 
 /* Очень маленькие устройства */
 @media (max-width: 360px) {
+    .slider-slide img {
+        max-height: 250px;
+    }
+
     .slider-btn {
         width: 30px;
         height: 30px;
