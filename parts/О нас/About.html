@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас - KIMOSHI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../CSS/style.css">
+    <link rel="stylesheet" href="../../CSS/parts/Reset.css">
+</head>
+<body>
+<div class="container">
+    <div class="topnav" data-reveal>
+        <div class="logo"><a href="../../index.html" id="logoLink"><img src="../../IMG/logo1.jpg" alt=""></a></div>
+        <div class="mobile-controls">
+            <a href="#" class="cart-link cart-link-mobile">Корзина(<span class="cart-count">0</span>)<i class="fas fa-shopping-cart cart-icon"></i><span class="cart-icon-badge">0</span></a>
+            <div class="bars"><i class="fa fa-bars"></i></div>
+        </div>
+        <ul class="nav">
+            <li class="nav__item"><a href="../../parts/О нас/About.html" class="nav__link">О нас</a></li>
+            <li class="nav__item"><a href="../../index.html" class="nav__link">Каталог</a></li>
+            <li class="nav__item"><a href="#" class="nav__link cart-link cart-link-desktop">Корзина(<span class="cart-count">0</span>)<i class="fas fa-shopping-cart cart-icon"></i><span class="cart-icon-badge">0</span></a></li>
+            <li class="nav__item"><a href="#" class="nav__link">Войти</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+    <h1 class="main_title" data-reveal>О нас</h1>
+    <div class="main_block" data-reveal>
+        <p style="text-align: center; font-size: 18px; line-height: 1.6; color: #080708; padding: 20px;">
+            Добро пожаловать в KIMOSHI - ваш надежный источник оригинальных товаров от ведущих мировых брендов.
+        </p>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Колонка 1: О компании -->
+        <div class="footer-column">
+            <h3>О компании</h3>
+            <p>Мы создаем качественные продукты и услуги для наших клиентов. Стремимся к excellence в каждом проекте.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-vk"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+        <!-- Колонка 2: Быстрые ссылки -->
+        <div class="footer-column">
+            <h3>Быстрые ссылки</h3>
+            <ul class="footer-links">
+                <li><a href="../../parts/О нас/About.html">О нас</a></li>
+                <li><a href="../../index.html">Каталог</a></li>
+            </ul>
+        </div>
+
+        <!-- Колонка 3: Услуги -->
+        <div class="footer-column">
+            <h3>Наши услуги</h3>
+            <ul class="footer-links">
+                <li><a href="#">Доставка</a></li>
+                <li><a href="#">Подбор</a></li>
+                <li><a href="#">Опт</a></li>
+                <li><a href="#">Консультации</a></li>
+                <li><a href="#">Поддержка</a></li>
+            </ul>
+        </div>
+
+        <!-- Колонка 4: Контакты -->
+        <div class="footer-column">
+            <h3>Контакты</h3>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>г. Ульяновск, ул. Пушкина, д. 123</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+7 (937) 452-58-98</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>kimoshi@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Пн-Пт: 9:00-18:00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Нижняя часть футера -->
+    <div class="footer-bottom">
+        <div class="footer-bottom-container">
+            <p>&copy; 2024 Все права защищены. Навинки Компани</p>
+            <div class="footer-bottom-links">
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Условия использования</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Модальное окно корзины -->
+<div class="cart-modal" id="cartModal">
+    <div class="cart-modal-overlay"></div>
+    <div class="cart-modal-content">
+        <div class="cart-modal-header">
+            <h2 class="cart-modal-title">Корзина</h2>
+            <button class="cart-modal-close" id="cartCloseBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-modal-body" id="cartItems">
+            <!-- Товары будут добавлены через JavaScript -->
+        </div>
+        <div class="cart-modal-footer">
+            <div class="cart-total">
+                <span class="cart-total-label">Итого:</span>
+                <span class="cart-total-price" id="cartTotalPrice">0 ₽</span>
+            </div>
+            <button class="cart-checkout-btn" id="cartCheckoutBtn">Оформить заказ</button>
+        </div>
+        <div class="cart-empty" id="cartEmpty">
+            <i class="fas fa-shopping-cart"></i>
+            <p>Корзина пуста</p>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="../../Js/menu-bar.js"></script>
+<script src="../../Js/scroll-reveal.js"></script>
+<script src="../../Js/cart.js"></script>
+</body>
+</html>

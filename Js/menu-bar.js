@@ -34,12 +34,28 @@ $(document).ready(function(){
     // Обработчик клика на логотип - возврат на главную страницу
     $('#logoLink').on('click', function(e) {
         e.preventDefault();
-        // Прокручиваем страницу наверх с плавной анимацией
-        $('html, body').animate({
-            scrollTop: 0
-        }, 500);
+        const currentPath = window.location.pathname;
+        const currentHref = window.location.href;
+        const isMainPage = currentPath.includes('index.html') || 
+                         currentPath.endsWith('/') || 
+                         currentPath.endsWith('\\') ||
+                         currentHref.includes('index.html') ||
+                         !currentPath.includes('About.html');
         
-        // Если страница не главная, можно добавить переход на главную
-        // window.location.href = './index.html';
+        if (isMainPage) {
+            // Если мы на главной странице, просто прокручиваем наверх
+            $('html, body').animate({
+                scrollTop: 0
+            }, 500);
+        } else {
+            // Определяем правильный путь к главной странице
+            let mainPagePath = 'index.html';
+            if (currentPath.includes('parts') || currentPath.includes('О нас')) {
+                mainPagePath = '../../index.html';
+            } else if (currentPath.includes('/')) {
+                mainPagePath = '../index.html';
+            }
+            window.location.href = mainPagePath;
+        }
     });
 });
