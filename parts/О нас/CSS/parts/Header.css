@@ -7,12 +7,6 @@
     margin-bottom: 100px;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
-
 .header_banner {
     width: 100%;
     max-width: 100%;

@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 
-@import url(./parts/Animations.css);
-@import url(./parts/Cart.css);
-@import url(./parts/Header.css);
-@import url(./parts/menu-bar.css);
 @import url(./parts/Reset.css);
-@import url(./parts/Footer.css);
+@import url(./parts/menu-bar.css);
+@import url(./parts/Header.css);
 @import url(./parts/main.css);
+@import url(./parts/Footer.css);
+@import url(./parts/Cart.css);
+@import url(./parts/Animations.css);
