@@ -7,25 +7,48 @@ $(document).ready(function(){
     console.log("Bars elements found:", $('.bars').length);
     console.log("Nav elements found:", $('.nav').length);
     
+    let menuJustToggled = false; // Флаг для отслеживания недавнего переключения меню
+    
     $('.bars').on('click', function(e){
         e.stopPropagation(); // Предотвращаем всплытие события
         e.preventDefault(); // Предотвращаем стандартное поведение
         console.log("Bars clicked - working!");
         console.log("Current nav display:", $('.nav').css('display'));
+        
+        // Устанавливаем флаг, что меню только что переключилось
+        menuJustToggled = true;
+        
+        // Сбрасываем флаг через достаточное время после клика
+        setTimeout(function() {
+            menuJustToggled = false;
+        }, 300);
+        
         $('.nav').toggleClass('active').slideToggle(150, function() {
             console.log("Animation complete. New display:", $(this).css('display'));
         });
     });
 
-    // Закрытие меню при клике вне его
+    // Закрытие меню при клике вне его (с задержкой для предотвращения конфликта с toggle)
+    let closeMenuTimeout;
     $(document).on('click', function(e) {
-        // Не закрываем меню, если клик был на .bars, внутри .bars (иконка), или внутри .topnav
+        // Очищаем предыдущий таймер
+        clearTimeout(closeMenuTimeout);
+        
+        // Не закрываем меню, если оно только что переключилось
+        if (menuJustToggled) {
+            return; // Игнорируем клик, если меню только что переключилось
+        }
+        
         const isClickOnBars = $(e.target).closest('.bars').length > 0;
         const isClickOnTopnav = $(e.target).closest('.topnav').length > 0;
+        const isNavVisible = $('.nav').hasClass('active') || $('.nav').is(':visible');
         
-        if (!isClickOnTopnav && !isClickOnBars) {
+        // Закрываем меню только если оно видимо и клик был вне меню (с небольшой задержкой)
+        if (!isClickOnTopnav && !isClickOnBars && isNavVisible) {
             if ($(window).width() <= 768) {
-                $('.nav').removeClass('active').slideUp(150);
+                closeMenuTimeout = setTimeout(function() {
+                    $('.nav').removeClass('active').slideUp(150);
+                }, 10);
             }
         }
     });
