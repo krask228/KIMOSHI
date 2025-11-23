@@ -7,12 +7,22 @@
     margin-bottom: 100px;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 .header_banner {
     width: 100%;
+    max-width: 100%;
     height: auto;
     display: block;
-    margin-bottom: 100px;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 50px;
     object-fit: cover;
+    vertical-align: top;
 }
 
 .Categories-title {
