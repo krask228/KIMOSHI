@@ -174,7 +174,11 @@
 
 /* Основной контент должен иметь отступ для фиксированного меню */
 body {
-    padding-top: 80px;
+    padding-top: 100px !important;
+}
+
+main {
+    padding-top: 0;
 }
 
 .header_banner {
@@ -183,19 +187,19 @@ body {
 
 @media (max-width: 1024px) {
     body {
-        padding-top: 75px;
+        padding-top: 95px !important;
     }
 }
 
 @media (max-width: 768px) {
     body {
-        padding-top: 70px;
+        padding-top: 90px !important;
     }
 }
 
 @media (max-width: 480px) {
     body {
-        padding-top: 65px;
+        padding-top: 85px !important;
     }
 }
 
