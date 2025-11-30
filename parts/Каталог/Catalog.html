@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог - KIMOSHI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="../../CSS/parts/Reset.css">
+</head>
+<body>
+<div class="container">
+    <div class="topnav" data-reveal>
+        <div class="logo"><a href="../../index.html" id="logoLink" data-home="../../index.html"><img src="../../IMG/logo1.jpg" alt=""></a></div>
+        <div class="mobile-controls">
+            <a href="#" class="cart-link cart-link-mobile">Корзина(<span class="cart-count">0</span>)<i class="fas fa-shopping-cart cart-icon"></i><span class="cart-icon-badge">0</span></a>
+            <div class="bars"><i class="fa fa-bars"></i></div>
+        </div>
+        <ul class="nav">
+            <li class="nav__item"><a href="../../parts/О нас/About.html" class="nav__link">О нас</a></li>
+            <li class="nav__item"><a href="../../parts/Каталог/Catalog.html" class="nav__link">Каталог</a></li>
+            <li class="nav__item"><a href="#" class="nav__link cart-link cart-link-desktop">Корзина(<span class="cart-count">0</span>)<i class="fas fa-shopping-cart cart-icon"></i><span class="cart-icon-badge">0</span></a></li>
+            <li class="nav__item"><a href="../../parts/Войти/Login.html" class="nav__link">Войти</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+    <h1 class="catalog-title" data-reveal>Каталог</h1>
+    
+    <!-- Filters Section -->
+    <div class="filters-section" data-reveal>
+        <div class="filters-container">
+            <!-- Search -->
+            <div class="filter-group">
+                <label for="searchInput" class="filter-label">
+                    <i class="fas fa-search"></i> Поиск по названию
+                </label>
+                <input type="text" id="searchInput" class="filter-input" placeholder="Введите название товара...">
+            </div>
+            
+            <!-- Category Filter -->
+            <div class="filter-group">
+                <label for="categoryFilter" class="filter-label">
+                    <i class="fas fa-tags"></i> Категория
+                </label>
+                <select id="categoryFilter" class="filter-select">
+                    <option value="all">Все товары</option>
+                    <option value="clothing">Одежда</option>
+                    <option value="tech">Техника</option>
+                </select>
+            </div>
+            
+            <!-- Price Filter -->
+            <div class="filter-group">
+                <label class="filter-label">
+                    <i class="fas fa-ruble-sign"></i> Цена
+                </label>
+                <div class="price-range">
+                    <input type="number" id="priceMin" class="price-input" placeholder="От" min="0">
+                    <span class="price-separator">-</span>
+                    <input type="number" id="priceMax" class="price-input" placeholder="До" min="0">
+                </div>
+            </div>
+            
+            <!-- Reset Button -->
+            <button type="button" id="resetFilters" class="reset-btn">
+                <i class="fas fa-redo"></i> Сбросить
+            </button>
+        </div>
+        
+        <!-- Results Count -->
+        <div class="results-count">
+            <span id="resultsCount">8</span> товаров
+        </div>
+    </div>
+    
+    <!-- Products Grid -->
+    <div class="catalog-products" id="productsContainer">
+        <!-- Одежда -->
+        <article class="product" data-category="clothing" data-price="14500" data-name="ЗИП-ХУДИ | SHINIGAMI">
+            <a href="##" class="product__image">
+                <div class="product__switch image-switch">
+                    <div class="image-switch__item">
+                        <div class="image-switch__img"><img src="../../IMG/product/ZIP-HOODIE-SHINIGAMI.jpeg" alt=""></div>
+                    </div>
+                    <div class="image-switch__item">
+                        <div class="image-switch__img"><img src="../../IMG/product/ZIP-HOODIE-SHINIGAMI-R.jpeg" alt=""></div>
+                    </div>
+                </div>
+                <ul class="product__image-pagination image-pagination" aria-hidden="true"></ul>
+            </a>
+            <h3 class="product__title">
+                <a href="##">ЗИП-ХУДИ | SHINIGAMI </a>
+            </h3>
+            <div class="product__price product-price">
+                <span class="product-price__current">14 500 ₽</span>
+                <span class="product-price__old">25 790 ₽</span>
+            </div>
+            <button type="button" class="product__btn">Добавить в корзину</button>
+        </article>
+
+        <article class="product" data-category="clothing" data-price="25000" data-name="БОМБЕР | DARK SUPREME">
+            <a href="##" class="product__image">
+                <div class="product__switch image-switch">
+                    <div class="image-switch__item">
+                        <div class="image-switch__img"><img src="../../IMG/product/bomber-blk-supreme.webp" alt=""></div>
+                    </div>
+                    <div class="image-switch__item">
+                        <div class="image-switch__img"><img src="../../IMG/product/bomber-blk-supreme-back.webp" alt=""></div>
+                    </div>
+                </div>
+                <ul class="product__image-pagination image-pagination" aria-hidden="true"></ul>
+            </a>
+            <h3 class="product__title">
+                <a href="##">БОМБЕР | DARK SUPREME </a>
+            </h3>
+            <div class="product__price product-price">
+                <span class="product-price__current">25 000 ₽</span>
+                <span class="product-price__old">30 790 ₽</span>
+            </div>
+            <button type="button" class="product__btn">Добавить в корзину</button>
+        </article>
+
+        <article class="product" data-category="clothing" data-price="14500" data-name="ХУДИ | TOAD SAGE">
+            <a href="##" class="product__image">
+                <div class="product__switch image-switch">
+                    <div class="image-switch__item">
+                        <div class="image-switch__img"><img src="../../IMG/product/toad-front.webp" alt=""></div>
+                    </div>
+                    <div class="image-switch__item">
+                        <div class="image-switch__img"><img src="../../IMG/product/toad-back.webp" alt=""></div>
+                    </div>
+                </div>
+                <ul class="product__image-pagination image-pagination" aria-hidden="true"></ul>
+            </a>
+            <h3 class="product__title">
+                <a href="##">ХУДИ | TOAD SAGE </a>
+            </h3>
+            <div class="product__price product-price">
+                <span class="product-price__current">14 500 ₽</span>
+                <span class="product-price__old">25 790 ₽</span>
+            </div>
+            <button type="button" class="product__btn">Добавить в корзину</button>
+        </article>
+
+        <article class="product" data-category="clothing" data-price="25000" data-name="БОМБЕР | MISA">
+            <a href="##" class="product__image">
+                <div class="product__switch image-switch">
+                    <div class="image-switch__item">
+                        <div class="image-switch__img"><img src="../../IMG/product/Bomber-Misa.jpg" alt=""></div>
+                    </div>
+                    <div class="image-switch__item">
+                        <div class="image-switch__img"><img src="../../IMG/product/Bomber-Misa-back.jpg" alt=""></div>
+                    </div>
+                </div>
+                <ul class="product__image-pagination image-pagination" aria-hidden="true"></ul>
+            </a>
+            <h3 class="product__title">
+                <a href="##">БОМБЕР | MISA </a>
+            </h3>
+            <div class="product__price product-price">
+                <span class="product-price__current">25 000 ₽</span>
+                <span class="product-price__old">30 790 ₽</span>
+            </div>
+            <button type="button" class="product__btn">Добавить в корзину</button>
+        </article>
+
+        <!-- Техника -->
+        <article class="product" data-category="tech" data-price="14500" data-name="APPLE AIRPODS MAX">
+            <a href="##" class="product__image">
+                <div class="product__switch image-switch">
+                    <div class="image-switch__item">
+                        <div class="image-switch__img"><img src="../../IMG/Техника/apple airpods max.png" alt=""></div>
+                    </div>
+                    <div class="image-switch__item">
+                        <div class="image-switch__img"><img src="../../IMG/Техника/apple airpods max-2.png" alt=""></div>
+                    </div>
+                </div>
+                <ul class="product__image-pagination image-pagination" aria-hidden="true"></ul>
+            </a>
+            <h3 class="product__title">
+                <a href="##">APPLE AIRPODS MAX </a>
+            </h3>
+            <div class="product__price product-price">
+                <span class="product-price__current">14 500 ₽</span>
+                <span class="product-price__old">25 790 ₽</span>
+            </div>
+            <button type="button" class="product__btn">Добавить в корзину</button>
+        </article>
+
+        <article class="product" data-category="tech" data-price="25000" data-name="APPLE WATCH ULTRA">
+            <a href="##" class="product__image">
+                <div class="product__switch image-switch">
+                    <div class="image-switch__item">
+                        <div class="image-switch__img"><img src="../../IMG/Техника/Apple Watch Ultra.jpg" alt=""></div>
+                    </div>
+                    <div class="image-switch__item">
+                        <div class="image-switch__img"><img src="../../IMG/Техника/Apple Watch Ultra-2.jpg" alt=""></div>
+                    </div>
+                </div>
+                <ul class="product__image-pagination image-pagination" aria-hidden="true"></ul>
+            </a>
+            <h3 class="product__title">
+                <a href="##">APPLE WATCH ULTRA </a>
+            </h3>
+            <div class="product__price product-price">
+                <span class="product-price__current">25 000 ₽</span>
+                <span class="product-price__old">30 790 ₽</span>
+            </div>
+            <button type="button" class="product__btn">Добавить в корзину</button>
+        </article>
+
+        <article class="product" data-category="tech" data-price="14500" data-name="APPLE AIRPODS PRO 2">
+            <a href="##" class="product__image">
+                <div class="product__switch image-switch">
+                    <div class="image-switch__item">
+                        <div class="image-switch__img"><img src="../../IMG/Техника/Apple AirPods Pro.jpeg" alt=""></div>
+                    </div>
+                    <div class="image-switch__item">
+                        <div class="image-switch__img"><img src="../../IMG/Техника/Apple AirPods Pro-2.jpeg" alt=""></div>
+                    </div>
+                </div>
+                <ul class="product__image-pagination image-pagination" aria-hidden="true"></ul>
+            </a>
+            <h3 class="product__title">
+                <a href="##">APPLE AIRPODS PRO 2 </a>
+            </h3>
+            <div class="product__price product-price">
+                <span class="product-price__current">14 500 ₽</span>
+                <span class="product-price__old">25 790 ₽</span>
+            </div>
+            <button type="button" class="product__btn">Добавить в корзину</button>
+        </article>
+
+        <article class="product" data-category="tech" data-price="25000" data-name="APPLE MAGSAFE BATTERY PACK">
+            <a href="##" class="product__image">
+                <div class="product__switch image-switch">
+                    <div class="image-switch__item">
+                        <div class="image-switch__img"><img src="../../IMG/Техника/Apple MagSafe Battery Pack.jpeg" alt=""></div>
+                    </div>
+                    <div class="image-switch__item">
+                        <div class="image-switch__img"><img src="../../IMG/Техника/Apple MagSafe Battery Pack-2.webp" alt=""></div>
+                    </div>
+                </div>
+                <ul class="product__image-pagination image-pagination" aria-hidden="true"></ul>
+            </a>
+            <h3 class="product__title">
+                <a href="##">APPLE MAGSAFE BATTERY PACK </a>
+            </h3>
+            <div class="product__price product-price">
+                <span class="product-price__current">25 000 ₽</span>
+                <span class="product-price__old">30 790 ₽</span>
+            </div>
+            <button type="button" class="product__btn">Добавить в корзину</button>
+        </article>
+    </div>
+    
+    <!-- No Results Message -->
+    <div class="no-results" id="noResults" style="display: none;">
+        <i class="fas fa-search"></i>
+        <p>Товары не найдены</p>
+        <p class="no-results-subtitle">Попробуйте изменить параметры фильтрации</p>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Колонка 1: О компании -->
+        <div class="footer-column">
+            <h3>О компании</h3>
+            <p>Мы создаем качественные продукты и услуги для наших клиентов. Стремимся к excellence в каждом проекте.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-vk"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+        <!-- Колонка 2: Быстрые ссылки -->
+        <div class="footer-column">
+            <h3>Быстрые ссылки</h3>
+            <ul class="footer-links">
+                <li><a href="../../parts/О нас/About.html">О нас</a></li>
+                <li><a href="../../parts/Каталог/Catalog.html">Каталог</a></li>
+            </ul>
+        </div>
+
+        <!-- Колонка 3: Услуги -->
+        <div class="footer-column">
+            <h3>Наши услуги</h3>
+            <ul class="footer-links">
+                <li><a href="#">Доставка</a></li>
+                <li><a href="#">Подбор</a></li>
+                <li><a href="#">Опт</a></li>
+                <li><a href="#">Консультации</a></li>
+                <li><a href="#">Поддержка</a></li>
+            </ul>
+        </div>
+
+        <!-- Колонка 4: Контакты -->
+        <div class="footer-column">
+            <h3>Контакты</h3>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>г. Ульяновск, ул. Пушкина, д. 123</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+7 (937) 452-58-98</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>kimoshi@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Пн-Пт: 9:00-18:00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Нижняя часть футера -->
+    <div class="footer-bottom">
+        <div class="footer-bottom-container">
+            <p>&copy; 2024 Все права защищены. Навинки Компани</p>
+            <div class="footer-bottom-links">
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Условия использования</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Модальное окно корзины -->
+<div class="cart-modal" id="cartModal">
+    <div class="cart-modal-overlay"></div>
+    <div class="cart-modal-content">
+        <div class="cart-modal-header">
+            <h2 class="cart-modal-title">Корзина</h2>
+            <button class="cart-modal-close" id="cartCloseBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-modal-body" id="cartItems">
+            <!-- Товары будут добавлены через JavaScript -->
+        </div>
+        <div class="cart-modal-footer">
+            <div class="cart-total">
+                <span class="cart-total-label">Итого:</span>
+                <span class="cart-total-price" id="cartTotalPrice">0 ₽</span>
+            </div>
+            <button class="cart-checkout-btn" id="cartCheckoutBtn">Оформить заказ</button>
+        </div>
+        <div class="cart-empty" id="cartEmpty">
+            <i class="fas fa-shopping-cart"></i>
+            <p>Корзина пуста</p>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="../../Js/menu-bar.js"></script>
+<script src="../../Js/product.js"></script>
+<script src="../../Js/cart.js"></script>
+<script src="../../Js/scroll-reveal.js"></script>
+<script src="./Js/catalog.js"></script>
+</body>
+</html>
+
