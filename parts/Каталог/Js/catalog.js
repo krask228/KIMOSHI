@@ -17,13 +17,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Функция показа товаров с учетом пагинации
     function showProducts() {
-        const productsToShow = filteredProducts.slice(0, currentVisibleCount);
+        // Сначала скрываем все товары
+        products.forEach(product => {
+            product.style.display = 'none';
+        });
         
-        products.forEach((product, index) => {
-            if (filteredProducts.includes(product)) {
-                const shouldShow = productsToShow.includes(product);
-                product.style.display = shouldShow ? '' : 'none';
-            }
+        // Затем показываем только первые currentVisibleCount товаров из отфильтрованных
+        const productsToShow = filteredProducts.slice(0, currentVisibleCount);
+        productsToShow.forEach(product => {
+            product.style.display = '';
         });
         
         // Показываем/скрываем кнопку "Показать еще"
