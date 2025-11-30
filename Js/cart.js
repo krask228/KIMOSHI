@@ -440,8 +440,19 @@ $(document).ready(function() {
     $('#cartCheckoutBtn').on('click', function(e) {
         e.preventDefault();
         if (cart.getTotalItems() > 0) {
-            alert('Спасибо за заказ! Общая сумма: ' + cart.formatPrice(cart.getTotalPrice()));
-            // Здесь можно добавить логику оформления заказа
+            // Закрываем модальное окно корзины
+            $('#cartModal').removeClass('active');
+            // Определяем путь к странице оформления заказа в зависимости от текущей страницы
+            const currentPath = window.location.pathname;
+            let checkoutPath = './parts/Оформить заказ/Checkout.html';
+            
+            // Если мы на странице каталога или других страницах в parts
+            if (currentPath.includes('/parts/')) {
+                checkoutPath = '../../parts/Оформить заказ/Checkout.html';
+            }
+            
+            // Перенаправляем на страницу оформления заказа
+            window.location.href = checkoutPath;
         }
     });
 });
