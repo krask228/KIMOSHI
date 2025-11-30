@@ -6,6 +6,9 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
 }
 
 *:before {
@@ -26,6 +29,10 @@ body {
     background-color: rgb(255, 255, 255);
     color: #080708;
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 /* Адаптивная типографика */

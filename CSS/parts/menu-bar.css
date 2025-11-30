@@ -5,10 +5,11 @@
 .container {
     background: #000000;
     padding: 15px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    width: 100%;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+    width: 100% !important;
+    margin: 0 !important;
 }
 
 .topnav {
