@@ -7,8 +7,32 @@ document.addEventListener('DOMContentLoaded', function() {
     const productsContainer = document.getElementById('productsContainer');
     const noResults = document.getElementById('noResults');
     const resultsCount = document.getElementById('resultsCount');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const loadMoreContainer = document.getElementById('loadMoreContainer');
     
     const products = Array.from(document.querySelectorAll('.product'));
+    const ITEMS_PER_PAGE = 15;
+    let currentVisibleCount = 0;
+    let filteredProducts = [];
+    
+    // Функция показа товаров с учетом пагинации
+    function showProducts() {
+        const productsToShow = filteredProducts.slice(0, currentVisibleCount);
+        
+        products.forEach((product, index) => {
+            if (filteredProducts.includes(product)) {
+                const shouldShow = productsToShow.includes(product);
+                product.style.display = shouldShow ? '' : 'none';
+            }
+        });
+        
+        // Показываем/скрываем кнопку "Показать еще"
+        if (currentVisibleCount >= filteredProducts.length) {
+            loadMoreContainer.style.display = 'none';
+        } else {
+            loadMoreContainer.style.display = 'block';
+        }
+    }
     
     // Функция фильтрации товаров
     function filterProducts() {
@@ -17,42 +41,53 @@ document.addEventListener('DOMContentLoaded', function() {
         const minPrice = priceMin.value ? parseInt(priceMin.value) : 0;
         const maxPrice = priceMax.value ? parseInt(priceMax.value) : Infinity;
         
-        let visibleCount = 0;
-        
-        products.forEach(product => {
+        // Фильтруем товары
+        filteredProducts = products.filter(product => {
             const productName = product.getAttribute('data-name').toLowerCase();
             const productCategory = product.getAttribute('data-category');
             const productPrice = parseInt(product.getAttribute('data-price'));
             
-            // Проверка поиска по названию
             const matchesSearch = !searchTerm || productName.includes(searchTerm);
-            
-            // Проверка категории
             const matchesCategory = selectedCategory === 'all' || productCategory === selectedCategory;
-            
-            // Проверка цены
             const matchesPrice = productPrice >= minPrice && productPrice <= maxPrice;
             
-            // Показываем/скрываем товар
-            if (matchesSearch && matchesCategory && matchesPrice) {
-                product.style.display = '';
-                visibleCount++;
-            } else {
-                product.style.display = 'none';
-            }
+            return matchesSearch && matchesCategory && matchesPrice;
         });
         
+        // Сбрасываем счетчик видимых товаров
+        currentVisibleCount = Math.min(ITEMS_PER_PAGE, filteredProducts.length);
+        
+        // Показываем товары
+        showProducts();
+        
         // Показываем/скрываем сообщение "Товары не найдены"
-        if (visibleCount === 0) {
+        if (filteredProducts.length === 0) {
             productsContainer.style.display = 'none';
-            noResults.style.display = 'block';
+            loadMoreContainer.style.display = 'none';
+            if (noResults) {
+                noResults.style.display = 'block';
+            }
         } else {
             productsContainer.style.display = 'flex';
-            noResults.style.display = 'none';
+            if (noResults) {
+                noResults.style.display = 'none';
+            }
         }
         
         // Обновляем счетчик результатов
-        resultsCount.textContent = visibleCount;
+        resultsCount.textContent = filteredProducts.length;
+    }
+    
+    // Функция загрузки еще товаров
+    function loadMoreProducts() {
+        currentVisibleCount = Math.min(currentVisibleCount + ITEMS_PER_PAGE, filteredProducts.length);
+        showProducts();
+        
+        // Плавная прокрутка к новым товарам
+        const lastVisibleProduct = filteredProducts[currentVisibleCount - 1];
+        if (lastVisibleProduct) {
+            lastVisibleProduct.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
     }
     
     // Обработчики событий
@@ -60,6 +95,9 @@ document.addEventListener('DOMContentLoaded', function() {
     categoryFilter.addEventListener('change', filterProducts);
     priceMin.addEventListener('input', filterProducts);
     priceMax.addEventListener('input', filterProducts);
+    
+    // Обработчик кнопки "Показать еще"
+    loadMoreBtn.addEventListener('click', loadMoreProducts);
     
     // Сброс фильтров
     resetBtn.addEventListener('click', function() {

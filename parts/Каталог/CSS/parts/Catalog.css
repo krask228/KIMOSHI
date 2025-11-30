@@ -167,6 +167,50 @@ main.main {
     max-width: 285px;
 }
 
+/* Load More Button */
+.load-more-container {
+    max-width: 1600px;
+    width: 100%;
+    margin: 50px auto;
+    padding: 0 15px;
+    text-align: center;
+}
+
+.load-more-btn {
+    background-color: #080708;
+    color: #fff;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: inherit;
+}
+
+.load-more-btn:hover {
+    background-color: orangered;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 69, 0, 0.3);
+}
+
+.load-more-btn:active {
+    transform: translateY(0);
+}
+
+.load-more-btn i {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.load-more-btn:hover i {
+    transform: translateY(2px);
+}
+
 /* No Results */
 .no-results {
     text-align: center;
@@ -281,6 +325,16 @@ main.main {
         min-width: calc(50% - 8px);
         max-width: calc(50% - 8px);
     }
+
+    .load-more-container {
+        margin: 40px auto;
+        padding: 0 10px;
+    }
+
+    .load-more-btn {
+        padding: 14px 35px;
+        font-size: 15px;
+    }
 }
 
 /* Маленькие мобильные устройства */
@@ -337,6 +391,18 @@ main.main {
         min-width: calc(50% - 6px);
         max-width: calc(50% - 6px);
         box-sizing: border-box;
+    }
+
+    .load-more-container {
+        margin: 35px auto;
+        padding: 0 8px;
+    }
+
+    .load-more-btn {
+        padding: 12px 30px;
+        font-size: 14px;
+        width: 100%;
+        max-width: 300px;
     }
 }
 
