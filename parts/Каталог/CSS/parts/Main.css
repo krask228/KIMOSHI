@@ -244,14 +244,19 @@
 	align-items: center;
 	justify-content: center;
 	opacity: 0;
+	padding: 10px;
+	box-sizing: border-box;
 }
 
 
 .image-switch__img img {
 	display: block;
 	max-width: 100%;
-	height: 100%;
-	object-fit: cover;
+	max-height: 100%;
+	width: auto;
+	height: auto;
+	object-fit: contain;
+	object-position: center;
 }
 
 .image-switch__item:first-child .image-switch__img {
