@@ -5,8 +5,13 @@
 .container {
     background: #000000;
     padding: 15px;
-    width: 100%;
-    margin: 0;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
+    width: 100% !important;
+    margin: 0 !important;
 }
 
 .topnav {
@@ -166,6 +171,33 @@
     }
 }
 
+
+/* Основной контент должен иметь отступ для фиксированного меню */
+body {
+    padding-top: 80px;
+}
+
+.header_banner {
+    margin-top: 0;
+}
+
+@media (max-width: 1024px) {
+    body {
+        padding-top: 75px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding-top: 65px;
+    }
+}
 
 /* Планшеты */
 @media screen and (max-width: 1024px) {
