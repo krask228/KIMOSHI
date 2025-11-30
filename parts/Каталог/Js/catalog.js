@@ -84,12 +84,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function loadMoreProducts() {
         currentVisibleCount = Math.min(currentVisibleCount + ITEMS_PER_PAGE, filteredProducts.length);
         showProducts();
-        
-        // Плавная прокрутка к новым товарам
-        const lastVisibleProduct = filteredProducts[currentVisibleCount - 1];
-        if (lastVisibleProduct) {
-            lastVisibleProduct.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
     }
     
     // Обработчики событий
