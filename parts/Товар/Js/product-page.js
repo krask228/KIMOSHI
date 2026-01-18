@@ -105,6 +105,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const backBtn = document.getElementById('backBtn');
     if (backBtn) {
         backBtn.addEventListener('click', function() {
+            // Проверяем, есть ли сохраненное состояние для возврата
+            try {
+                const savedState = sessionStorage.getItem('catalogPageState');
+                if (savedState) {
+                    const state = JSON.parse(savedState);
+                    const stateAge = Date.now() - (state.timestamp || 0);
+                    
+                    // Если состояние свежее (менее 5 минут), используем его
+                    if (stateAge < 5 * 60 * 1000 && state.fromUrl) {
+                        // Переходим на сохраненный URL, состояние восстановится автоматически
+                        window.location.href = state.fromUrl;
+                        return;
+                    } else {
+                        // Удаляем устаревшее состояние
+                        sessionStorage.removeItem('catalogPageState');
+                    }
+                }
+            } catch (e) {
+                console.error('Ошибка при проверке сохраненного состояния:', e);
+            }
+            
+            // Если сохраненного состояния нет, используем стандартный возврат
             history.back();
         });
     }

@@ -1,3 +1,40 @@
+// Функция для сохранения состояния страницы
+function savePageState() {
+    const state = {
+        scrollY: window.scrollY || window.pageYOffset || 0,
+        timestamp: Date.now()
+    };
+    
+    // Сохраняем состояние фильтров, если мы на странице каталога
+    if (window.location.pathname.includes('Catalog.html')) {
+        const searchInput = document.getElementById('searchInput');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const priceMin = document.getElementById('priceMin');
+        const priceMax = document.getElementById('priceMax');
+        
+        state.filters = {
+            search: searchInput ? searchInput.value : '',
+            category: categoryFilter ? categoryFilter.value : 'all',
+            priceMin: priceMin ? priceMin.value : '',
+            priceMax: priceMax ? priceMax.value : ''
+        };
+        
+        // Сохраняем количество видимых товаров
+        if (window.catalogState && typeof window.catalogState.getVisibleCount === 'function') {
+            state.visibleCount = window.catalogState.getVisibleCount();
+        } else {
+            // Альтернативный способ: подсчитать видимые товары через DOM
+            const visibleProducts = document.querySelectorAll('.product[style=""], .product:not([style*="display: none"])');
+            state.visibleCount = visibleProducts.length || 15;
+        }
+    }
+    
+    // Сохраняем URL текущей страницы
+    state.fromUrl = window.location.href;
+    
+    sessionStorage.setItem('catalogPageState', JSON.stringify(state));
+}
+
 // Обработчик клика на название товара для открытия страницы продукта
 document.addEventListener('DOMContentLoaded', function() {
     // Находим все ссылки с названиями товаров
@@ -91,6 +128,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (productCategory === 'clothing') {
                 params.append('sizes', JSON.stringify(['XS', 'S', 'M', 'L', 'XL', 'XXL']));
             }
+            
+            // Сохраняем состояние текущей страницы перед переходом
+            savePageState();
             
             // Перенаправляем на страницу продукта
             window.location.href = productPageUrl + '?' + params.toString();
