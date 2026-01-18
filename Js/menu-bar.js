@@ -7,56 +7,100 @@ $(document).ready(function(){
     console.log("Bars elements found:", $('.bars').length);
     console.log("Nav elements found:", $('.nav').length);
     
-    let menuJustToggled = false; // Флаг для отслеживания недавнего переключения меню
+    // Создаем overlay элемент, если его нет
+    if ($('.nav-overlay').length === 0) {
+        $('body').append('<div class="nav-overlay"></div>');
+    }
+    
+    let isMenuOpen = false;
+    
+    function closeMenu() {
+        if (!isMenuOpen) return;
+        
+        $('.bars').removeClass('active');
+        $('.nav').removeClass('active');
+        $('.nav-overlay').removeClass('active');
+        $('body').css('overflow', '');
+        isMenuOpen = false;
+        
+        // Убираем overlay после анимации
+        setTimeout(function() {
+            if (!isMenuOpen) {
+                $('.nav-overlay').hide();
+            }
+        }, 400);
+    }
+    
+    function openMenu() {
+        if (isMenuOpen) return;
+        
+        $('.nav-overlay').show();
+        setTimeout(function() {
+            $('.nav-overlay').addClass('active');
+        }, 10);
+        
+        $('.bars').addClass('active');
+        $('.nav').addClass('active');
+        $('body').css('overflow', 'hidden');
+        isMenuOpen = true;
+    }
+    
+    function toggleMenu() {
+        if (isMenuOpen) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    }
     
     $('.bars').on('click', function(e){
-        e.stopPropagation(); // Предотвращаем всплытие события
-        e.preventDefault(); // Предотвращаем стандартное поведение
-        console.log("Bars clicked - working!");
-        console.log("Current nav display:", $('.nav').css('display'));
+        e.stopPropagation();
+        e.preventDefault();
         
-        // Устанавливаем флаг, что меню только что переключилось
-        menuJustToggled = true;
-        
-        // Сбрасываем флаг через достаточное время после клика
-        setTimeout(function() {
-            menuJustToggled = false;
-        }, 300);
-        
-        $('.nav').toggleClass('active').slideToggle(150, function() {
-            console.log("Animation complete. New display:", $(this).css('display'));
-        });
+        toggleMenu();
     });
-
-    // Закрытие меню при клике вне его (с задержкой для предотвращения конфликта с toggle)
-    let closeMenuTimeout;
-    $(document).on('click', function(e) {
-        // Очищаем предыдущий таймер
-        clearTimeout(closeMenuTimeout);
-        
-        // Не закрываем меню, если оно только что переключилось
-        if (menuJustToggled) {
-            return; // Игнорируем клик, если меню только что переключилось
+    
+    // Закрытие меню при клике на overlay
+    $(document).on('click', '.nav-overlay', function(e) {
+        if (isMenuOpen) {
+            closeMenu();
         }
-        
+    });
+    
+    // Закрытие меню при клике вне его
+    $(document).on('click', function(e) {
         const isClickOnBars = $(e.target).closest('.bars').length > 0;
-        const isClickOnTopnav = $(e.target).closest('.topnav').length > 0;
-        const isNavVisible = $('.nav').hasClass('active') || $('.nav').is(':visible');
+        const isClickOnNav = $(e.target).closest('.nav').length > 0;
+        const isClickOnOverlay = $(e.target).hasClass('nav-overlay');
         
-        // Закрываем меню только если оно видимо и клик был вне меню (с небольшой задержкой)
-        if (!isClickOnTopnav && !isClickOnBars && isNavVisible) {
-            if ($(window).width() <= 768) {
-                closeMenuTimeout = setTimeout(function() {
-                    $('.nav').removeClass('active').slideUp(150);
-                }, 10);
+        if (isMenuOpen && !isClickOnBars && !isClickOnNav) {
+            if (isClickOnOverlay) {
+                closeMenu();
             }
         }
     });
 
     // Закрытие меню при клике на ссылку (на мобильных устройствах)
-    $('.nav__link').on('click', function() {
-        if ($(window).width() <= 768) {
-            $('.nav').removeClass('active').slideUp(150);
+    $(document).on('click', '.nav__link', function() {
+        if ($(window).width() <= 768 && isMenuOpen) {
+            // Небольшая задержка для плавности
+            setTimeout(function() {
+                closeMenu();
+            }, 150);
+        }
+    });
+    
+    // Закрытие меню при изменении размера окна (если стало больше 768px)
+    $(window).on('resize', function() {
+        if ($(window).width() > 768 && isMenuOpen) {
+            closeMenu();
+        }
+    });
+    
+    // Закрытие меню при нажатии Escape
+    $(document).on('keydown', function(e) {
+        if (e.key === 'Escape' && isMenuOpen) {
+            closeMenu();
         }
     });
 

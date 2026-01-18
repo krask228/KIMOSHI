@@ -186,6 +186,190 @@ const productsDatabase = {
         description: 'Apple MagSafe Battery Pack - портативное зарядное устройство для iPhone. Магнитное крепление, компактный размер.',
         sizes: null,
         category: 'tech'
+    },
+    
+    // Дополнительные товары одежды
+    'ДЖИНСОВКА SUMMER | SILENCE': {
+        id: 'denim-silence',
+        name: 'ДЖИНСОВКА SUMMER | SILENCE',
+        price: '23 000 ₽',
+        oldPrice: '26 790 ₽',
+        images: [
+            '../../Img/product/Denim_Silence-makima.jpg',
+            '../../Img/product/Denim_Silence-makima-back.jpg'
+        ],
+        description: 'Стильная джинсовка летнего кроя в стиле Silence. Качественный деним, удобный крой, современный дизайн.',
+        sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+        category: 'clothing'
+    },
+    'ДЖИНСОВКА SUMMER | EVA 01': {
+        id: 'denim-summer-eva01',
+        name: 'ДЖИНСОВКА SUMMER | EVA 01',
+        price: '23 000 ₽',
+        oldPrice: '26 790 ₽',
+        images: [
+            '../../Img/product/shirt_indi-eva01.webp',
+            '../../Img/product/shirt_indi-eva01-back.webp'
+        ],
+        description: 'Стильная джинсовка летнего кроя в стиле EVA 01. Качественный деним, удобный крой, яркий дизайн.',
+        sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+        category: 'clothing'
+    },
+    'ФУТБОЛКА | MUSICAL MADNESS': {
+        id: 't-shirt-musical-madness',
+        name: 'ФУТБОЛКА | MUSICAL MADNESS',
+        price: '6 500 ₽',
+        oldPrice: '8 000 ₽',
+        images: [
+            '../../Img/product/Miku_obseshn.webp',
+            '../../Img/product/Miku_obseshn_back.webp'
+        ],
+        description: 'Стильная футболка с уникальным музыкальным дизайном. Качественный хлопок, удобная посадка, яркий принт.',
+        sizes: ['XS', 'S', 'M', 'L', 'XL'],
+        category: 'clothing'
+    },
+    'DENIM ДЖИНСЫ | ECLIPSE': {
+        id: 'denim-eclipse',
+        name: 'DENIM ДЖИНСЫ | ECLIPSE',
+        price: '15 000 ₽',
+        oldPrice: '20 790 ₽',
+        images: [
+            '../../Img/product/ECLIPSE_denim.webp',
+            '../../Img/product/ECLIPSE_denim_back.webp'
+        ],
+        description: 'Стильные джинсы в стиле Eclipse. Качественный деним, удобный крой, современный дизайн.',
+        sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+        category: 'clothing'
+    },
+    'ЛОНГСЛИВ | MADMAN': {
+        id: 'longsleeve-madman',
+        name: 'ЛОНГСЛИВ | MADMAN',
+        price: '15 000 ₽',
+        oldPrice: '20 790 ₽',
+        images: [
+            '../../Img/product/ЛОНГСЛИВ _MADMAN.webp',
+            '../../Img/product/ЛОНГСЛИВ _MADMAN_back.webp'
+        ],
+        description: 'Стильный лонгслив с уникальным дизайном Madman. Качественный материал, удобная посадка, яркий принт.',
+        sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+        category: 'clothing'
+    },
+    'ЛОНГСЛИВ | PRETTY DISASTER': {
+        id: 'longsleeve-pretty-disaster',
+        name: 'ЛОНГСЛИВ | PRETTY DISASTER',
+        price: '15 000 ₽',
+        oldPrice: '20 790 ₽',
+        images: [
+            '../../Img/product/ЛОНГСЛИВ_PRETTY_DISASTER.webp',
+            '../../Img/product/ЛОНГСЛИВ_PRETTY_DISASTER_back.webp'
+        ],
+        description: 'Стильный лонгслив с уникальным дизайном Pretty Disaster. Качественный материал, удобная посадка, яркий принт.',
+        sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+        category: 'clothing'
+    },
+    'БОДИ | WHITE': {
+        id: 'body-white',
+        name: 'БОДИ | WHITE',
+        price: '15 000 ₽',
+        oldPrice: '20 790 ₽',
+        images: [
+            '../../Img/product/БОДИ_WHITE.webp',
+            '../../Img/product/БОДИ_WHITE_back.webp'
+        ],
+        description: 'Стильное белое боди с качественным кроем. Удобная посадка, качественный материал.',
+        sizes: ['XS', 'S', 'M', 'L', 'XL'],
+        category: 'clothing'
+    },
+    'БОДИ SMBR X NFT-TOPPA 1': {
+        id: 'body-smbr-nft',
+        name: 'БОДИ SMBR X NFT-TOPPA 1',
+        price: '15 000 ₽',
+        oldPrice: '20 790 ₽',
+        images: [
+            '../../Img/product/БОДИ SMBR X NF_T-TOPPA 1.webp',
+            '../../Img/product/БОДИ SMBR X NF_T-TOPPA 1-back.webp'
+        ],
+        description: 'Стильное боди в коллаборации SMBR X NFT-TOPPA. Уникальный дизайн, качественный материал, удобная посадка.',
+        sizes: ['XS', 'S', 'M', 'L', 'XL'],
+        category: 'clothing'
+    },
+    'ТОП SMBR X NF RACING CLUB': {
+        id: 'top-smbr-racing',
+        name: 'ТОП SMBR X NF RACING CLUB',
+        price: '15 000 ₽',
+        oldPrice: '20 790 ₽',
+        images: [
+            '../../Img/product/ТОП SMBR X NF  RACING CLUB.webp',
+            '../../Img/product/ТОП SMBR X NF  RACING CLUB_back.webp'
+        ],
+        description: 'Стильный топ в коллаборации SMBR X NF RACING CLUB. Уникальный дизайн, качественный материал, удобная посадка.',
+        sizes: ['XS', 'S', 'M', 'L', 'XL'],
+        category: 'clothing'
+    },
+    'ТОП | WHITE': {
+        id: 'top-white',
+        name: 'ТОП | WHITE',
+        price: '15 000 ₽',
+        oldPrice: '20 790 ₽',
+        images: [
+            '../../Img/product/ТОП_WHITE.webp',
+            '../../Img/product/ТОП_WHITE_back.webp'
+        ],
+        description: 'Стильный белый топ с качественным кроем. Удобная посадка, качественный материал.',
+        sizes: ['XS', 'S', 'M', 'L', 'XL'],
+        category: 'clothing'
+    },
+    'ШТАНЫ ШИРОКИЕ | SHIKIGAMI': {
+        id: 'pants-shikigami',
+        name: 'ШТАНЫ ШИРОКИЕ | SHIKIGAMI',
+        price: '15 000 ₽',
+        oldPrice: '20 790 ₽',
+        images: [
+            '../../Img/product/ШТАНЫ ШИРОКИЕ_SHIKIGAMI.webp',
+            '../../Img/product/ШТАНЫ ШИРОКИЕ_SHIKIGAMI_back.webp'
+        ],
+        description: 'Стильные широкие штаны в стиле Shikigami. Удобный крой, качественный материал, современный дизайн.',
+        sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+        category: 'clothing'
+    },
+    'ШТАНЫ ШИРОКИЕ | SHURIKEN': {
+        id: 'pants-shuriken',
+        name: 'ШТАНЫ ШИРОКИЕ | SHURIKEN',
+        price: '15 000 ₽',
+        oldPrice: '20 790 ₽',
+        images: [
+            '../../Img/product/ШТАНЫ ШИРОКИЕ_SHURIKEN.webp',
+            '../../Img/product/ШТАНЫ ШИРОКИЕ_SHURIKEN_back.webp'
+        ],
+        description: 'Стильные широкие штаны в стиле Shuriken. Удобный крой, качественный материал, современный дизайн.',
+        sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+        category: 'clothing'
+    },
+    'ПУХОВИК | COFFEE MULTIVERSE': {
+        id: 'puffer-coffee',
+        name: 'ПУХОВИК | COFFEE MULTIVERSE',
+        price: '15 000 ₽',
+        oldPrice: '20 790 ₽',
+        images: [
+            '../../Img/product/ПУХОВИК_COFFEE MULTIVERSE.webp',
+            '../../Img/product/ПУХОВИК_COFFEE MULTIVERSE_back.webp'
+        ],
+        description: 'Стильный пуховик в стиле Coffee Multiverse. Теплый и удобный, качественный материал, современный дизайн.',
+        sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+        category: 'clothing'
+    },
+    'ПУХОВИК | BLUE MULTIVERSE': {
+        id: 'puffer-blue',
+        name: 'ПУХОВИК | BLUE MULTIVERSE',
+        price: '15 000 ₽',
+        oldPrice: '20 790 ₽',
+        images: [
+            '../../Img/product/ПУХОВИК_BLUE MULTIVERSE.webp',
+            '../../Img/product/ПУХОВИК_BLUE MULTIVERSE_back.webp'
+        ],
+        description: 'Стильный пуховик в стиле Blue Multiverse. Теплый и удобный, качественный материал, современный дизайн.',
+        sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+        category: 'clothing'
     }
 };
 

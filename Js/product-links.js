@@ -87,6 +87,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             params.append('category', productCategory);
             
+            // Если категория "clothing", передаем стандартные размеры, если они еще не переданы
+            if (productCategory === 'clothing') {
+                params.append('sizes', JSON.stringify(['XS', 'S', 'M', 'L', 'XL', 'XXL']));
+            }
+            
             // Перенаправляем на страницу продукта
             window.location.href = productPageUrl + '?' + params.toString();
         });

@@ -46,6 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Ошибка при парсинге изображений:', e);
         }
         
+        const category = urlParams.get('category') || 'clothing';
+        
         product = {
             id: productId || 'product-' + Date.now(),
             name: productName ? decodeURIComponent(productName) : 'Товар',
@@ -54,16 +56,31 @@ document.addEventListener('DOMContentLoaded', function() {
             images: productImages,
             description: urlParams.get('description') || 'Описание товара отсутствует.',
             sizes: urlParams.get('sizes') ? JSON.parse(decodeURIComponent(urlParams.get('sizes'))) : null,
-            category: urlParams.get('category') || 'clothing'
+            category: category
         };
         
-        // Если изображения не переданы, пытаемся найти их из базы данных по ID
-        if (product.images.length === 0 && productId && typeof getProductById !== 'undefined') {
-            const dbProduct = getProductById(productId);
-            if (dbProduct && dbProduct.images) {
-                product.images = dbProduct.images;
-                product.description = dbProduct.description || product.description;
-                product.sizes = dbProduct.sizes || product.sizes;
+        // Если категория "clothing", но размеры не указаны, устанавливаем стандартные размеры
+        if (category === 'clothing' && !product.sizes) {
+            product.sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+        }
+        
+        // Если изображения не переданы, пытаемся найти их из базы данных по ID или названию
+        if (product.images.length === 0) {
+            if (productId && typeof getProductById !== 'undefined') {
+                const dbProduct = getProductById(productId);
+                if (dbProduct && dbProduct.images) {
+                    product.images = dbProduct.images;
+                    product.description = dbProduct.description || product.description;
+                    product.sizes = dbProduct.sizes || product.sizes;
+                }
+            } else if (productName && typeof getProductByName !== 'undefined') {
+                const dbProduct = getProductByName(decodeURIComponent(productName));
+                if (dbProduct && dbProduct.images) {
+                    product.images = dbProduct.images;
+                    product.description = dbProduct.description || product.description;
+                    product.sizes = dbProduct.sizes || product.sizes;
+                    product.category = dbProduct.category || product.category;
+                }
             }
         }
     }
@@ -154,11 +171,19 @@ function renderProduct(product) {
     const mainProductImage = document.getElementById('mainProductImage');
     const productThumbnails = document.getElementById('productThumbnails');
     
+    // Убеждаемся, что изображения есть, иначе используем изображение по умолчанию
+    if (!product.images || product.images.length === 0) {
+        product.images = ['../../IMG/logo1.jpg'];
+    }
+    
     if (product.images && product.images.length > 0) {
         // Главное изображение
         if (mainProductImage) {
             mainProductImage.src = product.images[0];
             mainProductImage.alt = product.name;
+            mainProductImage.onerror = function() {
+                this.src = '../../IMG/logo1.jpg';
+            };
         }
         
         // Миниатюры
@@ -168,7 +193,13 @@ function renderProduct(product) {
             product.images.forEach((imageUrl, index) => {
                 const thumbnail = document.createElement('div');
                 thumbnail.className = 'product-thumbnail' + (index === 0 ? ' active' : '');
-                thumbnail.innerHTML = `<img src="${imageUrl}" alt="${product.name} ${index + 1}">`;
+                const thumbnailImg = document.createElement('img');
+                thumbnailImg.src = imageUrl;
+                thumbnailImg.alt = `${product.name} ${index + 1}`;
+                thumbnailImg.onerror = function() {
+                    this.src = '../../IMG/logo1.jpg';
+                };
+                thumbnail.appendChild(thumbnailImg);
                 
                 thumbnail.addEventListener('click', function() {
                     // Убираем активный класс со всех миниатюр
