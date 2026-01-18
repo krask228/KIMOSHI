@@ -37,13 +37,18 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const imagePath = item.image || '../../IMG/product/default.jpg';
             
+            // Извлекаем число из строки цены (убираем все нецифровые символы и пробелы)
+            const priceStr = item.price.replace(/[^\d]/g, '').replace(/\s/g, '');
+            const price = parseFloat(priceStr) || 0;
+            const totalPrice = price * item.quantity;
+            
             checkoutItem.innerHTML = `
                 <img src="${imagePath}" alt="${item.name}" class="checkout-item-image" onerror="this.src='../../IMG/product/default.jpg'">
                 <div class="checkout-item-info">
                     <div class="checkout-item-name">${item.name}</div>
                     <div class="checkout-item-details">
                         <span class="checkout-item-quantity">Количество: ${item.quantity}</span>
-                        <span class="checkout-item-price">${cart.formatPrice(item.price * item.quantity)}</span>
+                        <span class="checkout-item-price">${cart.formatPrice(totalPrice)}</span>
                     </div>
                 </div>
             `;
