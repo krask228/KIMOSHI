@@ -380,3 +380,65 @@
     }
 }
 
+/* Уведомления */
+.checkout-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    min-width: 300px;
+    max-width: 500px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateX(400px);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    font-family: inherit;
+}
+
+.checkout-notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.checkout-notification-success {
+    background-color: #4caf50;
+    color: #fff;
+    border-left: 4px solid #2e7d32;
+}
+
+.checkout-notification-error {
+    background-color: #f44336;
+    color: #fff;
+    border-left: 4px solid #c62828;
+}
+
+.checkout-notification-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.checkout-notification-content i {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .checkout-notification {
+        top: 15px;
+        right: 15px;
+        left: 15px;
+        min-width: auto;
+        max-width: none;
+        transform: translateY(-100px);
+    }
+    
+    .checkout-notification.show {
+        transform: translateY(0);
+    }
+}
+
