@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+@import url(../../CSS/parts/Reset.css);
+@import url(../../CSS/parts/menu-bar.css);
+@import url(../../CSS/parts/Header.css);
+@import url(../../CSS/parts/Footer.css);
+@import url(../../CSS/parts/Cart.css);
+@import url(../../CSS/parts/Animations.css);
+@import url(./parts/Product.css);
+
