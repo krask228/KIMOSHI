@@ -423,6 +423,42 @@ main {
         font-size: 20px;
     }
     
+    /* Особый стиль для элемента Telegram */
+    .nav__item:has(a[href*="t.me"]) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: none;
+    }
+    
+    /* Синий фон для кнопки Telegram */
+    .nav a[href*="t.me"] {
+        display: inline-flex;
+        align-items: center;
+        background-color: #0088cc;
+        padding: 10px 20px;
+        border-radius: 8px;
+        width: auto;
+        min-width: auto;
+        max-width: fit-content;
+        margin: 0;
+        text-align: center;
+    }
+    
+    .nav a[href*="t.me"]:hover {
+        background-color: #006ba3;
+        padding-left: 20px;
+    }
+    
+    .nav a[href*="t.me"]::before {
+        display: none;
+    }
+    
+    .nav a[href*="t.me"]::after {
+        display: none;
+    }
+    
     /* На мобильных устройствах скрываем текст "Корзина" и показываем иконку */
     .cart-link-mobile {
         display: inline-flex;
