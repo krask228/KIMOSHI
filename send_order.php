@@ -30,8 +30,17 @@ if (isset($_POST['items']) && is_string($_POST['items'])) {
     $items = $_POST['items'];
 }
 
-// Получаем общую сумму
+// Получаем общую сумму и способ оплаты
 $total = isset($_POST['total']) ? htmlspecialchars(trim($_POST['total']), ENT_QUOTES, 'UTF-8') : '';
+$paymentMethod = isset($_POST['paymentMethod']) ? htmlspecialchars(trim($_POST['paymentMethod']), ENT_QUOTES, 'UTF-8') : '';
+
+// Преобразуем способ оплаты в читаемый формат
+$paymentMethods = [
+    'card' => 'Банковская карта',
+    'cash' => 'Наличными при получении',
+    'online' => 'Онлайн оплата'
+];
+$paymentMethodText = isset($paymentMethods[$paymentMethod]) ? $paymentMethods[$paymentMethod] : ($paymentMethod ? $paymentMethod : 'Не указан');
 
 // Настройки Telegram
 $botToken = '8315054422:AAFhru9oaG6IANlHJIYEV-60qlrr6uiataQ';
@@ -41,7 +50,8 @@ $chatId = '8031234667';
 $telegramMessage = "🛒 <b>НОВЫЙ ЗАКАЗ</b>\n\n";
 $telegramMessage .= "👤 <b>ФИО:</b> " . $name . "\n";
 $telegramMessage .= "📱 <b>Телефон:</b> " . $phone . "\n";
-$telegramMessage .= "📍 <b>Адрес доставки:</b> " . $address . "\n\n";
+$telegramMessage .= "📍 <b>Адрес доставки:</b> " . $address . "\n";
+$telegramMessage .= "💳 <b>Способ оплаты:</b> " . $paymentMethodText . "\n\n";
 
 // Добавляем список товаров, если есть
 if (!empty($items) && is_array($items)) {
