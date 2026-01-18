@@ -361,6 +361,10 @@ main {
         transition-delay: 0.25s;
     }
     
+    .nav.active .nav__item:nth-child(5) {
+        transition-delay: 0.3s;
+    }
+    
     .nav__item:not(:last-child) {
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
@@ -411,6 +415,12 @@ main {
     .nav a:hover::after {
         opacity: 1;
         transform: translateX(0);
+    }
+    
+    /* Стили для иконки Telegram */
+    .nav a i.fab.fa-telegram {
+        margin-right: 10px;
+        font-size: 20px;
     }
     
     /* На мобильных устройствах скрываем текст "Корзина" и показываем иконку */
