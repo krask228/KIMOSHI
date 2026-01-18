@@ -175,6 +175,55 @@
     line-height: 1.4;
 }
 
+.cart-item-attributes {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 14px;
+    color: #666;
+    margin-top: 4px;
+}
+
+.cart-item-size,
+.cart-item-color {
+    display: inline-block;
+}
+
+.cart-item-size strong,
+.cart-item-color strong {
+    font-weight: 600;
+    color: #080708;
+    margin-right: 4px;
+}
+
+.cart-item-size-warning {
+    margin-top: 8px;
+    padding: 8px 12px;
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.cart-item-size-warning-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #856404;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.cart-item-size-warning-link:hover {
+    color: #ff6b00;
+    text-decoration: underline;
+}
+
+.cart-item-size-warning-link i {
+    font-size: 16px;
+}
+
 .cart-item-price {
     font-size: 18px;
     font-weight: 600;

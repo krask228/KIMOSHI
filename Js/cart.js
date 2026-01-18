@@ -21,22 +21,46 @@ let cart = {
     },
     
     // Добавление товара в корзину
-    addItem(productId, productName, productPrice, productImage) {
-        // Проверяем, есть ли уже такой товар в корзине
-        const existingItem = this.items.find(item => item.id === productId);
+    addItem(productId, productName, productPrice, productImage, size = null, color = null, category = null) {
+        // Создаем уникальный ключ для товара с учетом размера и цвета
+        const itemKey = size || color 
+            ? `${productId}_${size || ''}_${color || ''}`.trim()
+            : productId;
+        
+        // Проверяем, есть ли уже такой товар в корзине (с таким же размером и цветом)
+        const existingItem = this.items.find(item => {
+            const existingKey = item.size || item.color 
+                ? `${item.id}_${item.size || ''}_${item.color || ''}`.trim()
+                : item.id;
+            return existingKey === itemKey;
+        });
         
         if (existingItem) {
             // Если товар уже есть, увеличиваем количество
             existingItem.quantity += 1;
         } else {
             // Если товара нет, добавляем новый
-            this.items.push({
+            const newItem = {
                 id: productId,
                 name: productName,
                 price: productPrice,
                 image: productImage,
                 quantity: 1
-            });
+            };
+            
+            // Добавляем размер и цвет, если они указаны
+            if (size) {
+                newItem.size = size;
+            }
+            if (color) {
+                newItem.color = color;
+            }
+            // Добавляем категорию для определения необходимости размера
+            if (category) {
+                newItem.category = category;
+            }
+            
+            this.items.push(newItem);
         }
         
         this.save();
@@ -237,6 +261,68 @@ let cart = {
         title.className = 'cart-item-title';
         title.textContent = item.name;
         
+        // Размер и цвет (если есть)
+        if (item.size || item.color) {
+            const attributesDiv = document.createElement('div');
+            attributesDiv.className = 'cart-item-attributes';
+            
+            if (item.size) {
+                const sizeSpan = document.createElement('span');
+                sizeSpan.className = 'cart-item-size';
+                sizeSpan.innerHTML = `<strong>Размер:</strong> ${item.size}`;
+                attributesDiv.appendChild(sizeSpan);
+            }
+            
+            if (item.color) {
+                const colorSpan = document.createElement('span');
+                colorSpan.className = 'cart-item-color';
+                colorSpan.innerHTML = `<strong>Цвет:</strong> ${item.color}`;
+                attributesDiv.appendChild(colorSpan);
+            }
+            
+            itemInfo.appendChild(attributesDiv);
+        }
+        
+        // Подсказка "выберите размер", если товар должен иметь размер, но он не выбран
+        // Проверяем, есть ли у товара размеры (либо через category, либо через проверку в базе данных)
+        let hasSizes = false;
+        if (item.category === 'clothing') {
+            hasSizes = true; // Одежда обычно имеет размеры
+        } else if (typeof productsDatabase !== 'undefined' && productsDatabase[item.id]) {
+            hasSizes = productsDatabase[item.id].sizes && productsDatabase[item.id].sizes.length > 0;
+        } else if (typeof productsData !== 'undefined' && productsData[item.id]) {
+            hasSizes = productsData[item.id].sizes && productsData[item.id].sizes.length > 0;
+        }
+        
+        if (!item.size && hasSizes) {
+            const sizeWarning = document.createElement('div');
+            sizeWarning.className = 'cart-item-size-warning';
+            const warningLink = document.createElement('a');
+            warningLink.href = '#';
+            warningLink.className = 'cart-item-size-warning-link';
+            warningLink.innerHTML = '<i class="fas fa-exclamation-circle"></i> Выберите размер';
+            warningLink.onclick = (e) => {
+                e.preventDefault();
+                // Переход на страницу товара
+                const currentPath = window.location.pathname;
+                let productPageUrl = './parts/Товар/Product.html';
+                
+                if (currentPath.includes('/parts/')) {
+                    if (currentPath.includes('/parts/Товар/')) {
+                        productPageUrl = './Product.html';
+                    } else {
+                        productPageUrl = '../../parts/Товар/Product.html';
+                    }
+                } else {
+                    productPageUrl = './parts/Товар/Product.html';
+                }
+                
+                window.location.href = `${productPageUrl}?id=${item.id}`;
+            };
+            sizeWarning.appendChild(warningLink);
+            itemInfo.appendChild(sizeWarning);
+        }
+        
         // Цена товара
         const priceDiv = document.createElement('div');
         priceDiv.className = 'cart-item-price';
@@ -350,8 +436,11 @@ $(document).ready(function() {
         // Получаем изображение товара
         const productImage = $product.find('.image-switch__img img').first().attr('src') || '';
         
+        // Получаем категорию товара из data-атрибута
+        const productCategory = $product.attr('data-category') || 'clothing';
+        
         // Добавляем товар в корзину
-        cart.addItem(productId, productName, productPrice, productImage);
+        cart.addItem(productId, productName, productPrice, productImage, null, null, productCategory);
         
         // Анимация кнопки
         $(this).text('Добавлено!').css({

@@ -42,10 +42,49 @@ document.addEventListener('DOMContentLoaded', function() {
             const price = parseFloat(priceStr) || 0;
             const totalPrice = price * item.quantity;
             
+            // Формируем информацию о размере и цвете
+            let attributesInfo = '';
+            if (item.size || item.color) {
+                const attributes = [];
+                if (item.size) {
+                    attributes.push(`Размер: ${item.size}`);
+                }
+                if (item.color) {
+                    attributes.push(`Цвет: ${item.color}`);
+                }
+                attributesInfo = `<div class="checkout-item-attributes">${attributes.join(', ')}</div>`;
+            }
+            
+            // Проверяем, нужно ли показать подсказку "выберите размер"
+            let sizeWarningInfo = '';
+            let hasSizes = false;
+            if (item.category === 'clothing') {
+                hasSizes = true; // Одежда обычно имеет размеры
+            } else if (typeof productsDatabase !== 'undefined' && productsDatabase[item.id]) {
+                hasSizes = productsDatabase[item.id].sizes && productsDatabase[item.id].sizes.length > 0;
+            } else if (typeof productsData !== 'undefined' && productsData[item.id]) {
+                hasSizes = productsData[item.id].sizes && productsData[item.id].sizes.length > 0;
+            }
+            
+            if (!item.size && hasSizes) {
+                const currentPath = window.location.pathname;
+                let productPageUrl = '../../parts/Товар/Product.html';
+                
+                sizeWarningInfo = `
+                    <div class="checkout-item-size-warning">
+                        <a href="${productPageUrl}?id=${item.id}" class="checkout-item-size-warning-link">
+                            <i class="fas fa-exclamation-circle"></i> Выберите размер
+                        </a>
+                    </div>
+                `;
+            }
+            
             checkoutItem.innerHTML = `
                 <img src="${imagePath}" alt="${item.name}" class="checkout-item-image" onerror="this.src='../../IMG/product/default.jpg'">
                 <div class="checkout-item-info">
                     <div class="checkout-item-name">${item.name}</div>
+                    ${attributesInfo}
+                    ${sizeWarningInfo}
                     <div class="checkout-item-details">
                         <span class="checkout-item-quantity">Количество: ${item.quantity}</span>
                         <span class="checkout-item-price">${cart.formatPrice(totalPrice)}</span>

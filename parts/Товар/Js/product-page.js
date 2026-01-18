@@ -104,13 +104,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
+            // Получаем выбранный размер
+            const size = selectedSize ? selectedSize.textContent.trim() : null;
+            
             // Получаем изображение товара
             const productImage = product.images && product.images.length > 0 
                 ? product.images[0] 
                 : '../../IMG/logo1.jpg';
             
-            // Добавляем товар в корзину
-            cart.addItem(product.id, product.name, product.price, productImage);
+            // Добавляем товар в корзину с размером и категорией
+            cart.addItem(product.id, product.name, product.price, productImage, size, null, product.category);
             
             // Показываем уведомление
             if (cart.showNotification) {
