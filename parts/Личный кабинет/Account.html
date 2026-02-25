@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет - KIMOSHI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../CSS/style.css">
+    <link rel="stylesheet" href="./CSS/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="topnav" data-reveal>
+        <div class="logo"><a href="../../index.html" data-home="../../index.html" id="logoLink"><img src="../../IMG/logo1.jpg" alt="Kimoshi"></a></div>
+        <div class="mobile-controls">
+            <a href="#" class="cart-link cart-link-mobile">Корзина(<span class="cart-count">0</span>)<i class="fas fa-shopping-cart cart-icon"></i><span class="cart-icon-badge">0</span></a>
+            <div class="bars">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <ul class="nav">
+            <li class="nav__item"><a href="../../parts/О нас/About.html" class="nav__link">О нас</a></li>
+            <li class="nav__item"><a href="../../parts/Каталог/Catalog.html" class="nav__link">Каталог</a></li>
+            <li class="nav__item"><a href="#" class="nav__link cart-link cart-link-desktop">Корзина(<span class="cart-count">0</span>)<i class="fas fa-shopping-cart cart-icon"></i><span class="cart-icon-badge">0</span></a></li>
+            <li class="nav__item"><a href="../Войти/Login.html" class="nav__link">Войти</a></li>
+            <li class="nav__item"><a href="https://t.me/kimoshi_channel" target="_blank" rel="noopener noreferrer" class="nav__link"><i class="fab fa-telegram"></i> Telegram</a></li>
+        </ul>
+    </div>
+</div>
+
+<main class="account-main">
+    <div class="account-layout">
+        <aside class="account-sidebar">
+            <div class="account-user">
+                <div class="account-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="account-user-info">
+                    <span class="account-user-name" id="accountUserName">Пользователь</span>
+                    <span class="account-user-email" id="accountUserEmail"></span>
+                </div>
+            </div>
+            <nav class="account-menu">
+                <button class="account-menu-item active" data-section="dashboard">
+                    <i class="fas fa-chart-pie"></i> Обзор / Дашборд
+                </button>
+                <button class="account-menu-item" data-section="orders">
+                    <i class="fas fa-box"></i> Мои заказы
+                </button>
+                <button class="account-menu-item" data-section="profile">
+                    <i class="fas fa-id-card"></i> Личные данные
+                </button>
+                <button class="account-menu-item" data-section="addresses">
+                    <i class="fas fa-map-marker-alt"></i> Адресная книга
+                </button>
+                <button class="account-menu-item" data-section="status">
+                    <i class="fas fa-truck"></i> Статус заказа
+                </button>
+                <button class="account-menu-item account-menu-item-exit" id="accountLogout">
+                    <i class="fas fa-sign-out-alt"></i> Выход
+                </button>
+            </nav>
+        </aside>
+
+        <section class="account-content">
+            <section class="account-section active" id="section-dashboard">
+                <h1 class="account-title">Обзор</h1>
+                <div class="account-dashboard-grid">
+                    <div class="account-card">
+                        <h3>Всего заказов</h3>
+                        <p class="account-metric" id="metricTotalOrders">0</p>
+                    </div>
+                    <div class="account-card">
+                        <h3>Активных заказов</h3>
+                        <p class="account-metric" id="metricActiveOrders">0</p>
+                    </div>
+                    <div class="account-card">
+                        <h3>Последний заказ</h3>
+                        <p class="account-metric" id="metricLastOrder">—</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="account-section" id="section-orders">
+                <h1 class="account-title">Мои заказы</h1>
+                <div id="ordersEmpty" class="account-empty">
+                    <p>Вы ещё не оформляли заказы.</p>
+                    <a href="../../parts/Каталог/Catalog.html" class="account-link">Перейти в каталог</a>
+                </div>
+                <div id="ordersListWrapper" class="account-table-wrapper">
+                    <table class="account-table" id="ordersTable">
+                        <thead>
+                            <tr>
+                                <th>Дата</th>
+                                <th>Товары</th>
+                                <th>Сумма</th>
+                                <th>Статус</th>
+                                <th>Трек-номер</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="account-section" id="section-profile">
+                <h1 class="account-title">Личные данные</h1>
+                <form class="account-form" id="profileForm">
+                    <div class="form-group">
+                        <label for="profileName">Имя и фамилия</label>
+                        <input type="text" id="profileName" class="input-field" placeholder="Имя и фамилия">
+                    </div>
+                    <div class="form-group">
+                        <label for="profileEmail">Email</label>
+                        <input type="email" id="profileEmail" class="input-field" placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="profilePhone">Телефон</label>
+                        <input type="text" id="profilePhone" class="input-field" placeholder="+7 (___) ___-__-__">
+                    </div>
+                    <button type="submit" class="auth-btn">Сохранить данные</button>
+                    <p class="form-success" id="profileSuccess"></p>
+                </form>
+            </section>
+
+            <section class="account-section" id="section-addresses">
+                <h1 class="account-title">Адресная книга</h1>
+                <form class="account-form" id="addressForm">
+                    <div class="form-group">
+                        <label for="addressMain">Основной адрес доставки</label>
+                        <textarea id="addressMain" class="input-field" rows="3" placeholder="Город, улица, дом, квартира"></textarea>
+                    </div>
+                    <button type="submit" class="auth-btn">Сохранить адрес</button>
+                    <p class="form-success" id="addressSuccess"></p>
+                </form>
+            </section>
+
+            <section class="account-section" id="section-status">
+                <h1 class="account-title">Статус заказа</h1>
+                <div id="statusEmpty" class="account-empty">
+                    <p>Заказы не найдены. Оформите заказ, чтобы отслеживать его статус.</p>
+                    <a href="../../parts/Каталог/Catalog.html" class="account-link">Перейти в каталог</a>
+                </div>
+                <div id="statusContent" class="account-status" style="display:none;">
+                    <div class="status-header">
+                        <div>
+                            <div class="status-label">Последний заказ</div>
+                            <div class="status-id" id="statusOrderId"></div>
+                        </div>
+                        <div class="status-chip" id="statusOrderStatus">Принят</div>
+                    </div>
+                    <div class="status-row">
+                        <span>Дата:</span>
+                        <span id="statusOrderDate"></span>
+                    </div>
+                    <div class="status-row">
+                        <span>Сумма:</span>
+                        <span id="statusOrderTotal"></span>
+                    </div>
+                    <div class="status-row">
+                        <span>Трек-номер:</span>
+                        <span id="statusTrackingCode"></span>
+                    </div>
+                    <div class="status-row">
+                        <span>Адрес доставки:</span>
+                        <span id="statusOrderAddress"></span>
+                    </div>
+                    <div class="status-items">
+                        <h3>Товары в заказе</h3>
+                        <ul id="statusItemsList"></ul>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+</main>
+
+<!-- CART MODAL -->
+<div class="cart-modal" id="cartModal">
+    <div class="cart-modal-overlay"></div>
+    <div class="cart-modal-content">
+        <div class="cart-modal-header">
+            <h2 class="cart-modal-title">Корзина</h2>
+            <button class="cart-modal-close" id="cartCloseBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-modal-body" id="cartItems"></div>
+        <div class="cart-modal-footer">
+            <div class="cart-total">
+                <span class="cart-total-label">Итого:</span>
+                <span class="cart-total-price" id="cartTotalPrice">0 ₽</span>
+            </div>
+            <button class="cart-checkout-btn" id="cartCheckoutBtn">Оформить заказ</button>
+        </div>
+        <div class="cart-empty" id="cartEmpty">
+            <i class="fas fa-shopping-cart"></i>
+            <p>Корзина пуста</p>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="../../Js/menu-bar.js"></script>
+<script src="../../Js/cart.js"></script>
+<script src="./Js/account.js"></script>
+</body>
+</html>
+

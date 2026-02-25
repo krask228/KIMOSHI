@@ -30,6 +30,13 @@ $(document).ready(function(){
             }
         }, 400);
     }
+
+    // Гарантированно закрываем меню и скрываем overlay при загрузке любой страницы
+    $('.bars').removeClass('active');
+    $('.nav').removeClass('active');
+    $('.nav-overlay').removeClass('active').hide();
+    $('body').css('overflow', '');
+    isMenuOpen = false;
     
     function openMenu() {
         if (isMenuOpen) return;
@@ -80,13 +87,13 @@ $(document).ready(function(){
         }
     });
 
-    // Закрытие меню при клике на ссылку (на мобильных устройствах)
+    // Закрытие меню при клике на любую ссылку меню
     $(document).on('click', '.nav__link', function() {
-        if ($(window).width() <= 768 && isMenuOpen) {
-            // Небольшая задержка для плавности
+        if (isMenuOpen) {
+            // Небольшая задержка для плавности анимации
             setTimeout(function() {
                 closeMenu();
-            }, 150);
+            }, 100);
         }
     });
     

@@ -590,11 +590,6 @@ main {
         font-size: 18px !important;
     }
 
-    .nav {
-        width: 95%;
-        top: 66px;
-    }
-
     .nav a {
         padding: 16px 20px;
         font-size: 18px;

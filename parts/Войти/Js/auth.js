@@ -58,19 +58,47 @@ document.addEventListener('DOMContentLoaded', () => {
 		return isValid;
 	};
 
+	const ACCOUNT_URL = '../Личный кабинет/Account.html';
+
 	forms.forEach(form => {
 		form.addEventListener('submit', (event) => {
 			event.preventDefault();
-			if (validateForm(form)) {
-				const successMessage = form.querySelector('.form-success');
-				if (successMessage) {
-					successMessage.textContent = 'Успешно! Данные отправлены.';
-					successMessage.classList.add('visible');
-				} else {
-					alert('Форма успешно отправлена');
-				}
-				form.reset();
+			if (!validateForm(form)) return;
+
+			const formType = form.dataset.form;
+
+			if (formType === 'signup') {
+				const nameField = document.getElementById('signup-name');
+				const emailField = document.getElementById('signup-email');
+
+				const user = {
+					name: nameField ? nameField.value.trim() : '',
+					email: emailField ? emailField.value.trim() : '',
+					createdAt: new Date().toISOString()
+				};
+
+				localStorage.setItem('kimoshiUser', JSON.stringify(user));
+				localStorage.setItem('kimoshiIsLoggedIn', 'true');
 			}
+
+			if (formType === 'login') {
+				const emailField = document.getElementById('login-email');
+				const existingUserRaw = localStorage.getItem('kimoshiUser');
+				let user = existingUserRaw ? JSON.parse(existingUserRaw) : {};
+				user.email = emailField ? emailField.value.trim() : user.email || '';
+				localStorage.setItem('kimoshiUser', JSON.stringify(user));
+				localStorage.setItem('kimoshiIsLoggedIn', 'true');
+			}
+
+			const successMessage = form.querySelector('.form-success');
+			if (successMessage) {
+				successMessage.textContent = 'Успешный вход. Перенаправляем в личный кабинет...';
+				successMessage.classList.add('visible');
+			}
+
+			setTimeout(() => {
+				window.location.href = ACCOUNT_URL;
+			}, 800);
 		});
 
 		form.querySelectorAll('.input-field, .checkbox input').forEach(field => {

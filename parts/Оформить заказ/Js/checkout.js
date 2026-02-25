@@ -199,6 +199,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         orders.push({
                             id: Date.now(),
                             date: new Date().toISOString(),
+                            trackingCode: data.tracking_code || '',
+                            status: 'Принят',
                             ...formData
                         });
                         localStorage.setItem('orders', JSON.stringify(orders));
@@ -208,7 +210,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         cart.save();
                         
                         // Показываем сообщение об успехе
-                        showNotification('Заказ успешно отправлен!', 'success');
+                        let successText = 'Заказ успешно отправлен!';
+                        if (data.tracking_code) {
+                            successText += ` Трек-номер: ${data.tracking_code}`;
+                        }
+                        showNotification(successText, 'success');
                         
                         // Перенаправляем на главную страницу через 2 секунды
                         setTimeout(() => {

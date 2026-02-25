@@ -46,12 +46,16 @@ $paymentMethodText = isset($paymentMethods[$paymentMethod]) ? $paymentMethods[$p
 $botToken = '8315054422:AAFhru9oaG6IANlHJIYEV-60qlrr6uiataQ';
 $chatId = '8031234667';
 
+// Генерируем трек-номер заказа
+$trackingCode = 'KMS-' . date('YmdHis') . '-' . rand(100, 999);
+
 // Формируем сообщение для Telegram
 $telegramMessage = "🛒 <b>НОВЫЙ ЗАКАЗ</b>\n\n";
 $telegramMessage .= "👤 <b>ФИО:</b> " . $name . "\n";
 $telegramMessage .= "📱 <b>Телефон:</b> " . $phone . "\n";
 $telegramMessage .= "📍 <b>Адрес доставки:</b> " . $address . "\n";
-$telegramMessage .= "💳 <b>Способ оплаты:</b> " . $paymentMethodText . "\n\n";
+$telegramMessage .= "💳 <b>Способ оплаты:</b> " . $paymentMethodText . "\n";
+$telegramMessage .= "📦 <b>Трек-номер:</b> " . $trackingCode . "\n\n";
 
 // Добавляем список товаров, если есть
 if (!empty($items) && is_array($items)) {
@@ -131,7 +135,8 @@ if ($httpCode === 200 && !empty($response)) {
     if (isset($responseData['ok']) && $responseData['ok'] === true) {
         echo json_encode([
             'success' => true,
-            'message' => 'Заказ успешно отправлен!'
+            'message' => 'Заказ успешно отправлен!',
+            'tracking_code' => $trackingCode
         ], JSON_UNESCAPED_UNICODE);
     } else {
         echo json_encode([
